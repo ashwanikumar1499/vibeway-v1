@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
+      base: '/', // Change this to '/your-subdirectory/' if deploying to a subdirectory
       server: {
         port: 3000,
         host: '0.0.0.0',
@@ -18,6 +19,16 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      }
+      },
+      build: {
+        outDir: 'dist',
+        assetsDir: 'assets',
+        // Ensure proper handling of assets
+        rollupOptions: {
+          output: {
+            manualChunks: undefined,
+          },
+        },
+      },
     };
 });
