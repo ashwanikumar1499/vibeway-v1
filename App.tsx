@@ -2,370 +2,221 @@ import React from 'react';
 import { Section } from './components/Section';
 import { Button } from './components/Button';
 import { WaitlistForm } from './components/WaitlistForm';
-import { Shield, CheckCircle2, XCircle, Menu, X, Users, MapPin, Sparkles } from 'lucide-react';
-import { motion, useScroll, useTransform, Variants } from 'framer-motion';
+import { Shield, ArrowRight, X, MapPin, Check, Globe, Flame, Lock, Zap, Sparkles, Radar } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-// Fresh Wavy VibeWay Logo - Gen Z Edition
 const VibeWayLogo = () => (
-  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 18 Q10 10, 14 18 T22 18 Q26 10, 30 18" stroke="url(#paint0_linear)" strokeWidth="4" strokeLinecap="round" fill="none"/>
-    <circle cx="6" cy="18" r="3" fill="url(#paint1_radial)" />
-    <circle cx="30" cy="18" r="3" fill="url(#paint2_radial)" />
-    <defs>
-      <linearGradient id="paint0_linear" x1="6" y1="10" x2="30" y2="18" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#c0ff00"/>
-        <stop offset="0.5" stopColor="#00f0ff"/>
-        <stop offset="1" stopColor="#ff0080"/>
-      </linearGradient>
-      <radialGradient id="paint1_radial">
-        <stop stopColor="#c0ff00"/>
-        <stop offset="1" stopColor="#7dd956"/>
-      </radialGradient>
-      <radialGradient id="paint2_radial">
-        <stop stopColor="#ff0080"/>
-        <stop offset="1" stopColor="#ff4f79"/>
-      </radialGradient>
-    </defs>
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 10L12 24L16 14L20 24L28 10" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
-// Navbar Component
 const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  const scrollToSection = (id: string) => {
-    setIsOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-  
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
-        <div className="font-display font-bold text-xl md:text-2xl tracking-tight text-white flex items-center gap-2 cursor-pointer group" onClick={() => window.scrollTo(0,0)}>
-          <div className="group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ease-in-out">
-             <VibeWayLogo />
+    <nav className="fixed top-0 left-0 right-0 z-[100] bg-black/50 backdrop-blur-2xl border-b border-white/[0.05]">
+      <div className="max-w-screen-xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo(0, 0)}>
+          <div className="group-hover:rotate-12 transition-transform duration-500">
+            <VibeWayLogo />
           </div>
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#c0ff00] via-[#00f0ff] to-[#ff0080]">VibeWay</span>
+          <span className="font-black tracking-tighter text-xl uppercase italic">VibeWay</span>
         </div>
-        
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-          <button onClick={() => scrollToSection('problem')} className="hover:text-[#c0ff00] transition-colors">The Ick</button>
-          <button onClick={() => scrollToSection('solution')} className="hover:text-[#00f0ff] transition-colors">The Fix</button>
-          <button onClick={() => scrollToSection('join')} className="text-black bg-gradient-to-r from-[#c0ff00] to-[#00f0ff] hover:scale-105 px-5 py-2.5 rounded-full transition-all font-bold shadow-[0_0_20px_rgba(192,255,0,0.3)]">Get Early Access</button>
-        </div>
-
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-white p-2">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        <button 
+          onClick={() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' })}
+          className="bg-white/5 hover:bg-white/10 px-6 py-2 rounded-full border border-white/10 text-[10px] font-black tracking-[0.2em] uppercase text-white transition-all"
+        >
+          Join Season 01
+        </button>
       </div>
-      
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-[#020617] border-b border-white/10 p-6 flex flex-col gap-4 shadow-2xl absolute w-full z-50">
-           <button onClick={() => scrollToSection('problem')} className="text-slate-400 text-left py-3 text-lg border-b border-white/5 hover:text-[#ff0080] transition-colors">The Ick</button>
-           <button onClick={() => scrollToSection('solution')} className="text-slate-400 text-left py-3 text-lg border-b border-white/5 hover:text-[#c0ff00] transition-colors">The Fix</button>
-           <button onClick={() => scrollToSection('join')} className="text-[#c0ff00] font-bold text-left py-3 text-lg">Get Early Access</button>
-        </div>
-      )}
     </nav>
   );
 };
 
-// Travel Card Component
-const TravelCard = () => {
-  return (
-    <div className="relative w-full max-w-[320px] md:max-w-sm mx-auto perspective-1000">
-       {/* Glow Effect */}
-       <div className="absolute -inset-4 bg-gradient-to-tr from-primary/30 to-secondary/30 blur-2xl rounded-[30px] opacity-60 animate-pulse"></div>
-       
-       <motion.div 
-         initial={{ rotateY: 15, rotateX: 5, scale: 0.9 }}
-         whileInView={{ rotateY: 0, rotateX: 0, scale: 1 }}
-         viewport={{ once: true }}
-         transition={{ type: "spring", stiffness: 50, damping: 20 }}
-         className="relative bg-[#0f172a] border border-white/10 rounded-[2rem] p-5 shadow-2xl overflow-hidden"
-       >
-          {/* Header */}
-          <div className="flex justify-between items-center mb-4 pb-4 border-b border-white/5">
-             <div className="flex items-center gap-3">
-               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c0ff00] to-[#00f0ff] flex items-center justify-center text-black font-bold text-xs shadow-inner">
-                 JD
-               </div>
-               <div>
-                 <div className="w-24 h-2.5 bg-slate-700 rounded-full mb-1.5 animate-pulse"></div>
-                 <div className="w-16 h-2 bg-slate-800 rounded-full"></div>
-               </div>
-             </div>
-             <div className="px-3 py-1 bg-[#c0ff00]/20 text-[#c0ff00] border border-[#c0ff00]/40 rounded-full text-[10px] font-bold tracking-wider flex items-center gap-1.5 shadow-[0_0_15px_rgba(192,255,0,0.3)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c0ff00] animate-[pulse_2s_infinite]"></span>
-                98% VIBE
-             </div>
-          </div>
-
-          {/* Image Area */}
-          <div className="relative w-full h-40 bg-slate-800 rounded-2xl mb-4 overflow-hidden group">
-             {/* Gradient Overlay representing image */}
-             <div className="absolute inset-0 bg-gradient-to-br from-cyan-600 via-blue-700 to-pink-700 group-hover:scale-105 transition-transform duration-700"></div>
-             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-
-             {/* Location Tag */}
-             <div className="absolute bottom-3 left-3 flex items-center gap-1 text-white text-xs font-bold backdrop-blur-sm bg-black/30 px-2.5 py-1.5 rounded-xl border border-[#c0ff00]/30 shadow-[0_0_10px_rgba(192,255,0,0.3)]">
-               <MapPin size={12} className="text-[#c0ff00]" />
-               Kyoto, Japan
-             </div>
-          </div>
-
-          {/* Tags */}
-          <div className="flex gap-2 flex-wrap mb-5">
-             {['Street Food', 'Photography', 'Hostels'].map((tag) => (
-               <span key={tag} className="px-2.5 py-1 bg-slate-900 border border-slate-700/50 rounded-lg text-[10px] text-slate-400 font-medium">
-                 {tag}
-               </span>
-             ))}
-          </div>
-
-          {/* Button */}
-          <button className="w-full py-3 bg-gradient-to-r from-[#c0ff00] to-[#00f0ff] text-black font-bold text-sm rounded-xl hover:scale-[1.02] transition-all shadow-[0_0_20px_rgba(192,255,0,0.3)] flex items-center justify-center gap-2 group">
-             <Sparkles size={14} className="text-black group-hover:rotate-12 transition-transform" />
-             Send Vibe Check
-          </button>
-       </motion.div>
-
-       {/* Floating Elements for 3D feel */}
-       <motion.div 
-         animate={{ y: [0, -10, 0] }}
-         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-         className="absolute -right-4 top-20 bg-slate-900/90 backdrop-blur border border-white/10 p-2 rounded-xl shadow-xl hidden md:block"
-       >
-         <div className="text-[10px] text-slate-400 mb-1">Budget</div>
-         <div className="text-xs font-bold text-white">$1.2k - $1.5k</div>
-       </motion.div>
-    </div>
-  )
-}
-
-// Simplified list item for storytelling
-const StoryPoint: React.FC<{ title: string; desc: string; type: 'pain' | 'gain'; delay?: number }> = ({ title, desc, type, delay = 0 }) => (
+const MemberPreview = () => (
   <motion.div 
-    initial={{ opacity: 0, x: -20 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once: true, margin: "-50px" }}
-    transition={{ duration: 0.6, delay: delay }}
-    className="flex gap-4 items-start mb-8 group"
+    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{ delay: 0.5, duration: 0.8 }}
+    className="relative group mt-12 md:mt-20"
   >
-    <div className={`mt-1 min-w-[24px] h-6 rounded-full flex items-center justify-center transition-transform group-hover:scale-110 duration-300 ${type === 'pain' ? 'bg-[#ff0080]/20 text-[#ff0080] border border-[#ff0080]/30' : 'bg-[#c0ff00]/20 text-[#c0ff00] border border-[#c0ff00]/30'}`}>
-       {type === 'pain' ? <XCircle size={16} /> : <CheckCircle2 size={16} />}
-    </div>
-    <div>
-      <h4 className={`text-lg font-bold font-display mb-1 ${type === 'pain' ? 'text-slate-200' : 'text-white'}`}>{title}</h4>
-      <p className="text-slate-400 text-sm md:text-base leading-relaxed">{desc}</p>
+    <div className="absolute -inset-4 bg-accent/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+    <div className="glass-card relative border border-white/10 rounded-[2.5rem] p-1 bg-gradient-to-br from-white/10 to-transparent">
+      <div className="bg-black/90 rounded-[2.3rem] px-8 py-6 flex items-center gap-6">
+        <div className="w-12 h-12 rounded-full bg-zinc-800 border border-white/10 flex-shrink-0 flex items-center justify-center overflow-hidden">
+          <div className="w-full h-full bg-gradient-to-tr from-accent to-zinc-900" />
+        </div>
+        <div className="text-left">
+          <div className="flex items-center gap-2 mb-1">
+            <p className="text-sm font-bold tracking-tight">Elias T. — <span className="text-accent italic">Main Character</span></p>
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          </div>
+          <p className="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Searching: Tokyo 3AM Food Tour</p>
+        </div>
+        <div className="hidden sm:flex items-center gap-4 border-l border-white/10 pl-6 ml-4">
+          <div className="text-center">
+            <p className="text-[9px] text-zinc-600 font-black uppercase">Sync</p>
+            <p className="text-xs font-bold text-accent">98%</p>
+          </div>
+          <div className="px-3 py-1.5 bg-accent text-black rounded-lg text-[10px] font-black uppercase tracking-tighter cursor-pointer hover:bg-white transition-colors">
+            Match
+          </div>
+        </div>
+      </div>
     </div>
   </motion.div>
 );
 
-function App() {
-  const scrollToJoin = () => {
-    document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' });
-  };
+const Hero = () => {
+  return (
+    <header className="relative min-h-screen pt-32 pb-20 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      {/* Background VFX */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.03)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+      </div>
 
-  // Parallax hooks
-  const { scrollY } = useScroll();
-  const bgY = useTransform(scrollY, [0, 1000], ['0%', '20%']);
-  const heroTextY = useTransform(scrollY, [0, 500], [0, 50]); 
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 w-full max-w-7xl mx-auto"
+      >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent font-black tracking-[0.3em] uppercase text-[9px] mb-8">
+          <Radar size={12} className="animate-pulse" />
+          Active Sync: 482 Members Verified
+        </div>
+
+        <h1 className="text-6xl sm:text-7xl md:text-[11rem] font-bold tracking-[ -0.05em] leading-[0.85] mb-8 select-none">
+          THE GROUP CHAT<br />
+          <span className="text-zinc-800 italic">IS DEAD.</span>
+        </h1>
+        
+        <p className="text-zinc-400 text-base md:text-2xl max-w-2xl mx-auto mb-12 font-medium leading-tight px-4 text-balance">
+          Stop waiting for the "Maybe" era. <br className="hidden md:block" /> 
+          VibeWay finds you humans who actually <span className="text-white">book the flight.</span>
+        </p>
+
+        <div className="flex flex-col items-center gap-12">
+          <Button 
+            onClick={() => document.getElementById('join')?.scrollIntoView({ behavior: 'smooth' })}
+            className="bg-white text-black px-16 py-6 text-xs font-black tracking-[0.2em] uppercase rounded-none hover:bg-accent transition-all hover:scale-105 active:scale-95 shadow-[0_0_50px_rgba(255,255,255,0.1)]"
+          >
+            Get Vibe-Checked
+          </Button>
+          
+          <MemberPreview />
+        </div>
+      </motion.div>
+    </header>
+  );
+};
+
+const Point = ({ title, desc, icon: Icon }: any) => (
+  <motion.div 
+    initial={{ opacity: 0, x: -10 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    className="mb-16 group last:mb-0"
+  >
+    <div className="flex items-center gap-6 mb-4">
+      <div className="p-3 bg-zinc-900/50 rounded-2xl border border-white/5 text-zinc-500 group-hover:text-accent group-hover:border-accent/20 transition-all duration-500">
+        <Icon size={22} strokeWidth={2} />
+      </div>
+      <h4 className="text-2xl font-bold tracking-tight">{title}</h4>
+    </div>
+    <p className="text-zinc-500 leading-relaxed text-base pl-20 max-w-md">
+      {desc}
+    </p>
+  </motion.div>
+);
+
+function App() {
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 1]); // Kept visible always now
 
   return (
-    <div className="min-h-screen bg-background text-slate-50 overflow-x-hidden selection:bg-primary/30 selection:text-white">
+    <div className="min-h-screen bg-black text-white selection:bg-accent/30 overflow-x-hidden font-sans">
       <Navbar />
+      <Hero />
 
-      {/* HERO BACKGROUND */}
-      <div className="fixed top-0 left-0 w-full h-[120vh] -z-10 overflow-hidden pointer-events-none">
-          {/* Base Dark Gradient */}
-          <div className="absolute inset-0 bg-[#020617]"></div>
+      {/* STORYTELLING: THE PROBLEM */}
+      <Section id="problem" className="grid md:grid-cols-2 gap-32 items-start py-40">
+        <div className="sticky top-40">
+          <div className="text-accent font-black tracking-[0.4em] uppercase text-[10px] mb-8 flex items-center gap-2">
+            <Flame size={12} /> No More Flakes
+          </div>
+          <h2 className="text-5xl md:text-8xl font-bold tracking-tighter leading-[0.9] mb-8">
+            Gatekeep your <br />
+            <span className="text-zinc-800 italic">Vibe.</span>
+          </h2>
+          <p className="text-zinc-500 text-lg max-w-sm leading-relaxed">
+            The group chat is where trips go to die. We built VibeWay to ensure you never waste a "locked in" look on a friend who isn't.
+          </p>
+        </div>
+        
+        <div className="pt-20">
+          <Point 
+            icon={X} 
+            title="Accountability Protocol" 
+            desc="Every member is ID-verified via Stripe. If you flake on a confirmed trip, your deposit pays for the crew's first night in Tokyo." 
+          />
+          <Point 
+            icon={Zap} 
+            title="Energy Matching" 
+            desc="Our AI matches your travel pace. Street food junkies don't get stuck in 5-star hotel lobbies. Early birds stay with early birds." 
+          />
+          <Point 
+            icon={Lock} 
+            title="Invite Only" 
+            desc="We aren't a marketplace; we're a lens. We vet 1,000+ applicants weekly to ensure the quality of the tribe stays peak." 
+          />
+        </div>
+      </Section>
+
+      {/* MID-SCROLL QUOTE */}
+      <Section className="bg-zinc-950/50 border-y border-white/[0.05] !max-w-none px-0 py-60">
+        <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-center text-center">
+           <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-black mb-12 shadow-2xl">
+             <Globe size={28} />
+           </div>
+           <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-12 max-w-4xl leading-[0.95]">
+             "THE ONLY THING WORSE THAN TRAVELING ALONE IS TRAVELING WITH THE WRONG PEOPLE."
+           </h2>
+           <p className="text-zinc-600 uppercase tracking-[0.5em] font-black text-xs">
+             — THE VIBEWAY MANIFESTO
+           </p>
+        </div>
+      </Section>
+
+      {/* FORM SECTION */}
+      <div id="join" className="py-40 md:py-80 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(45,212,191,0.08)_0%,_transparent_60%)] pointer-events-none"></div>
+        <Section className="text-center relative z-10">
+          <h2 className="text-6xl md:text-[13rem] font-bold tracking-tighter mb-12 uppercase">
+            LOCKED <span className="text-zinc-800 italic">IN?</span>
+          </h2>
+          <p className="text-zinc-500 mb-20 max-w-xl mx-auto uppercase tracking-[0.3em] font-black text-xs">
+            Season 01 Membership: 18/500 Remaining <br /> 
+            <span className="text-accent">Verification Required.</span>
+          </p>
           
-          {/* Animated Aurora Blobs */}
-          <motion.div 
-            style={{ y: bgY }}
-            className="absolute inset-0 opacity-40"
-          >
-            <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-[#c0ff00]/15 rounded-full blur-[120px] animate-aurora"></div>
-            <div className="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] bg-[#00f0ff]/15 rounded-full blur-[140px] animate-aurora" style={{ animationDelay: '-5s' }}></div>
-            <div className="absolute bottom-[-20%] left-[20%] w-[70vw] h-[70vw] bg-[#ff0080]/15 rounded-full blur-[120px] animate-aurora" style={{ animationDelay: '-2s' }}></div>
-          </motion.div>
-      </div>
-
-      {/* HERO SECTION */}
-      <main className="pt-32 pb-16 md:pt-48 md:pb-32 relative px-4 md:px-6">
-        <Section className="text-center relative z-10 !py-10 md:!py-32">
-          <motion.div 
-            style={{ y: heroTextY }}
-            className="flex flex-col items-center"
-          >
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#c0ff00]/10 to-[#00f0ff]/10 border border-[#c0ff00]/30 text-[10px] md:text-xs font-bold text-white mb-6 md:mb-8 backdrop-blur-md hover:scale-105 transition-all shadow-[0_0_20px_rgba(192,255,0,0.2)]"
-            >
-              <Sparkles className="w-3 h-3 text-[#c0ff00]" />
-              <span className="tracking-wide uppercase">Find Your Travel Twin</span>
-            </motion.div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 md:mb-8 leading-[1.05] font-display max-w-5xl mx-auto drop-shadow-2xl">
-              Stop planning trips that <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c0ff00] via-[#00f0ff] to-[#ff0080] animate-gradient">never happen.</span>
-            </h1>
-
-            <p className="text-base md:text-xl text-slate-300 max-w-xl md:max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium px-2">
-              Your group chat is a ghost town. Your friends flake. <br className="hidden md:block"/>
-              <span className="text-[#c0ff00]">VibeWay</span> finds you a crew that <span className="text-[#ff0080]">actually shows up</span> at the airport.
-            </p>
-            
-            <div className="w-full md:w-auto px-4">
-              <Button onClick={scrollToJoin} className="w-full md:w-auto text-base py-4 font-display font-bold shadow-[0_0_40px_rgba(192,255,0,0.3)] hover:shadow-[0_0_50px_rgba(192,255,0,0.5)] bg-gradient-to-r from-[#c0ff00] to-[#00f0ff] text-black hover:scale-105">
-                Get Early Access
-              </Button>
-            </div>
-             <p className="text-[10px] md:text-xs text-slate-500 font-mono mt-6">
-                no cap, just boarding passes fr fr
-              </p>
-          </motion.div>
-        </Section>
-      </main>
-
-      {/* THE PROBLEM SECTION */}
-      <div id="problem" className="relative border-t border-white/5 bg-slate-900/30 backdrop-blur-sm">
-        <Section>
-            <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-24 items-center">
-                <div className="order-2 md:order-1">
-                     <h2 className="text-sm font-mono text-[#ff0080] mb-4 uppercase tracking-widest font-bold">The Ick</h2>
-                     <h3 className="text-3xl md:text-5xl font-bold font-display mb-8">Why nobody's traveling rn.</h3>
-
-                     <div className="space-y-2">
-                        <StoryPoint
-                            type="pain"
-                            title="Group Chat Graveyard"
-                            desc="You drop a 'Bali in March?' Everyone reacts with plane emojis. Then crickets. Three months later someone replies 'sorry just saw this lol' and the trip is DOA."
-                            delay={0}
-                        />
-                        <StoryPoint
-                            type="pain"
-                            title="Vibe Mismatch Energy"
-                            desc="You're trying to backpack through Southeast Asia on $30/day. Your travel buddy wants luxury resorts and bottles at beach clubs. The vibes are OFF."
-                            delay={0.1}
-                        />
-                        <StoryPoint
-                            type="pain"
-                            title="Solo Traveler Tax"
-                            desc="Going alone hits different. Double the hotel costs, nobody to watch your stuff, eating dinner for one while couples everywhere. The loneliness is real."
-                            delay={0.2}
-                        />
-                     </div>
-                </div>
-                {/* Visual - Abstract Representation of Chaos */}
-                <div className="order-1 md:order-2 relative h-[300px] w-full flex items-center justify-center">
-                    <div className="absolute inset-0 bg-red-500/5 blur-[80px] rounded-full"></div>
-                    <div className="relative z-10 w-64 h-64 md:w-80 md:h-80 border border-white/5 rounded-full flex items-center justify-center animate-spin-slow">
-                        <motion.div 
-                          animate={{ y: [-10, 10, -10] }}
-                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-2 bg-[#0f172a] border border-[#ff0080]/50 rounded-xl flex items-center justify-center text-xs text-[#ff0080] shadow-xl whitespace-nowrap rotate-3"
-                        >
-                            "maybe next szn?"
-                        </motion.div>
-                        <motion.div
-                           animate={{ x: [10, -10, 10] }}
-                           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                           className="absolute bottom-10 right-0 px-4 py-2 bg-[#0f172a] border border-[#ff0080]/50 rounded-xl flex items-center justify-center text-xs text-[#ff0080] shadow-xl whitespace-nowrap -rotate-6"
-                        >
-                            "lowkey broke rn"
-                        </motion.div>
-                        <motion.div
-                           animate={{ scale: [1, 1.1, 1] }}
-                           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                           className="absolute top-1/2 left-0 -translate-x-1/2 px-4 py-2 bg-[#0f172a] border border-[#ff0080]/50 rounded-xl flex items-center justify-center text-xs text-[#ff0080] shadow-xl whitespace-nowrap rotate-6"
-                        >
-                            "just saw this lol"
-                        </motion.div>
-                        <XCircle className="w-16 h-16 text-red-500/20" />
-                    </div>
-                </div>
-            </div>
+          <WaitlistForm />
         </Section>
       </div>
 
-      {/* THE SOLUTION SECTION */}
-      <div id="solution" className="relative border-t border-white/5 bg-slate-900/50 backdrop-blur-md">
-        <Section>
-            <div className="flex flex-col md:grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-                 {/* Visual - High Fidelity Card */}
-                 <div className="order-1 md:order-1 w-full flex justify-center">
-                    <TravelCard />
-                </div>
-
-                <div className="order-2 md:order-2">
-                     <h2 className="text-sm font-mono text-[#c0ff00] mb-4 uppercase tracking-widest font-bold">The Fix</h2>
-                     <h3 className="text-3xl md:text-5xl font-bold font-display mb-8">How we actually solved this.</h3>
-
-                     <div className="space-y-2">
-                        <StoryPoint
-                            type="gain"
-                            title="AI Vibe Matching (Actually Good)"
-                            desc="We match you based on travel style, budget, and energy. Want street food tours at 6am? We'll find your people. Prefer sleeping till noon and beach clubs? We got you too."
-                            delay={0}
-                        />
-                        <StoryPoint
-                            type="gain"
-                            title="No Weirdos Allowed"
-                            desc="Everyone gets verified through Stripe Identity plus a quick video vibe check. We're building a community of real travelers, not bots or creeps."
-                            delay={0.1}
-                        />
-                        <StoryPoint
-                            type="gain"
-                            title="Anti-Flake Protection"
-                            desc="Everyone puts down a deposit. If someone ghosts last minute without a real reason, their deposit funds the group's first dinner. Accountability hits different."
-                            delay={0.2}
-                        />
-                     </div>
-                </div>
-            </div>
-        </Section>
-      </div>
-
-      {/* CTA / JOIN WAITLIST */}
-      <div id="join" className="relative overflow-hidden bg-slate-950">
-        {/* Ambient Glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-t from-[#c0ff00]/15 via-[#00f0ff]/10 to-transparent blur-[140px] rounded-full pointer-events-none"></div>
-        
-        <Section className="py-24 md:py-40 relative z-10">
-            <div className="text-center mb-12 md:mb-16">
-                <h2 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 font-display">
-                    Your travel twin is <br /> out there <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c0ff00] via-[#00f0ff] to-[#ff0080]">rn.</span>
-                </h2>
-                <p className="text-slate-300 text-lg max-w-xl mx-auto px-4 font-medium">
-                    Quit waiting on your flaky friends. <br/>
-                    Join travelers who are <span className="text-[#c0ff00]">actually ready</span> to book flights.
-                </p>
-            </div>
-            
-            <WaitlistForm />
-        </Section>
-        
-        {/* Footer */}
-        <footer className="border-t border-white/5 py-12 text-center text-slate-600 text-sm bg-[#020617] relative z-10 px-4">
-            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-8">
-                <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" className="hover:text-white transition-colors">Instagram</a>
-                <a href="#" className="hover:text-white transition-colors">TikTok</a>
-            </div>
-            <p className="font-mono text-xs opacity-50">&copy; {new Date().getFullYear()} VibeWay Inc. All rights reserved.</p>
-        </footer>
-      </div>
+      <footer className="py-32 border-t border-white/[0.05] text-center bg-black relative z-10">
+        <div className="flex justify-center gap-16 mb-16">
+          <a href="#" className="text-zinc-700 hover:text-white transition-all text-[10px] font-black tracking-[0.4em] uppercase italic underline-offset-8 hover:underline">Instagram</a>
+          <a href="#" className="text-zinc-700 hover:text-white transition-all text-[10px] font-black tracking-[0.4em] uppercase italic underline-offset-8 hover:underline">TikTok</a>
+          <a href="#" className="text-zinc-700 hover:text-white transition-all text-[10px] font-black tracking-[0.4em] uppercase italic underline-offset-8 hover:underline">Privacy</a>
+        </div>
+        <div className="flex flex-col items-center gap-6">
+          <div className="opacity-20 hover:opacity-100 transition-opacity">
+            <VibeWayLogo />
+          </div>
+          <p className="text-zinc-900 text-[10px] font-black tracking-[0.8em] uppercase">VIBEWAY WORLDWIDE &copy; 2024</p>
+        </div>
+      </footer>
     </div>
   );
 }

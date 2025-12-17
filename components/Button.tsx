@@ -5,18 +5,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  children,
-  variant = 'primary',
-  isLoading = false,
-  className = '',
-  ...props
+export const Button: React.FC<ButtonProps> = ({ 
+  children, 
+  variant = 'primary', 
+  isLoading = false, 
+  className = '', 
+  ...props 
 }) => {
-  const baseStyles = "inline-flex items-center justify-center px-8 py-3.5 text-sm font-bold tracking-wide transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed";
-
+  const baseStyles = "inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed";
+  
   const variants = {
-    primary: "bg-gradient-to-r from-[#c0ff00] to-[#00f0ff] text-black hover:scale-105 focus:ring-[#c0ff00] shadow-[0_0_30px_rgba(192,255,0,0.3)]",
-    outline: "bg-transparent border-2 border-[#c0ff00]/50 text-[#c0ff00] hover:border-[#c0ff00] hover:bg-[#c0ff00]/10 focus:ring-[#c0ff00]"
+    primary: "bg-white text-black hover:bg-slate-200 focus:ring-white",
+    outline: "bg-transparent border border-slate-700 text-slate-100 hover:border-slate-500 hover:text-white focus:ring-slate-500"
   };
 
   return (

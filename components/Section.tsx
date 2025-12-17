@@ -5,18 +5,17 @@ interface SectionProps {
   children: React.ReactNode;
   className?: string;
   id?: string;
-  delay?: number;
 }
 
-export const Section: React.FC<SectionProps> = ({ children, className = '', id, delay = 0 }) => {
+export const Section: React.FC<SectionProps> = ({ children, className = '', id }) => {
   return (
     <motion.section 
       id={id} 
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: delay }}
-      className={`py-20 md:py-32 px-6 md:px-12 max-w-7xl mx-auto ${className}`}
+      viewport={{ once: true, margin: "-10% " }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className={`py-20 md:py-32 px-6 max-w-screen-xl mx-auto ${className}`}
     >
       {children}
     </motion.section>

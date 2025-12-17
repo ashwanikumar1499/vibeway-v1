@@ -1,3 +1,4 @@
+
 import { WaitlistEntry, WaitlistResponse } from '../types';
 
 // TODO: REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
@@ -8,8 +9,10 @@ import { WaitlistEntry, WaitlistResponse } from '../types';
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx94-ZrJiszClKtW-ykefq4OYk-hdNvMq_nuuahoQCLM2ynU7GsZJHCJmSqWedTwIh0bA/exec'; 
 
 export const joinWaitlist = async (entry: WaitlistEntry): Promise<WaitlistResponse> => {
-  // If the user hasn't set up the URL yet, we simulate success so the UI still looks good.
-  if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
+  // Fix: Use a check that doesn't trigger TypeScript's literal type overlap error
+  const isDefaultUrl = GOOGLE_SCRIPT_URL.includes('YOUR_GOOGLE_SCRIPT_URL');
+  
+  if (isDefaultUrl || !GOOGLE_SCRIPT_URL) {
     console.warn("Google Script URL not set. Simulating success.");
     await new Promise((resolve) => setTimeout(resolve, 1000));
     

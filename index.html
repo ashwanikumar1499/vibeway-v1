@@ -3,46 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VibeWay - Find Your Travel Twin</title>
+    <title>VibeWay — Beyond The Group Chat Cemetery.</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Outfit', 'sans-serif'],
               display: ['Outfit', 'sans-serif'], 
             },
             colors: {
-              background: '#020617',
-              surface: '#0f172a',
-              primary: {
-                DEFAULT: '#c0ff00',
-                cyan: '#00f0ff',
-                pink: '#ff0080',
-              },
+              background: '#000000',
+              primary: '#ffffff',
+              accent: '#2dd4bf', 
+              muted: '#71717a', 
+              border: '#27272a',
             },
             animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'aurora': 'aurora 10s ease infinite alternate',
-              'spin-slow': 'spin 12s linear infinite',
-              'gradient': 'gradient 8s ease infinite',
+              'fade-in': 'fadeIn 1.2s ease-out forwards',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              },
-              aurora: {
-                '0%': { transform: 'translate(0, 0) scale(1)' },
-                '100%': { transform: 'translate(-20px, 20px) scale(1.1)' },
-              },
-              gradient: {
-                '0%, 100%': { backgroundPosition: '0% 50%' },
-                '50%': { backgroundPosition: '100% 50%' },
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(40px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
               }
             }
           },
@@ -51,50 +39,63 @@
     </script>
     <style>
       body {
-        background-color: #020617;
-        color: #f8fafc;
-        font-family: 'Inter', sans-serif;
+        background-color: #000000;
+        color: #ffffff;
         -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
       
-      .bg-grain {
+      .glass-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(60px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      /* Premium Grain Effect */
+      body::before {
+        content: "";
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         pointer-events: none;
-        z-index: 50;
+        z-index: 9999;
         opacity: 0.04;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      .text-balance {
+        text-wrap: balance;
       }
 
       ::-webkit-scrollbar {
-        width: 8px;
+        width: 3px;
       }
       ::-webkit-scrollbar-track {
-        background: #020617;
+        background: #000;
       }
       ::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, #c0ff00, #00f0ff);
-        border-radius: 4px;
+        background: #222;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(180deg, #d4ff33, #33f4ff);
-      }
-      
-      html {
-        scroll-padding-top: 80px;
-      }
-
-      .animate-gradient {
-        background-size: 200% 200%;
+        background: #333;
       }
     </style>
-  </head>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react": "https://esm.sh/react@18.3.1",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "framer-motion": "https://esm.sh/framer-motion@11.0.8"
+  }
+}
+</script>
+</head>
   <body>
-    <div class="bg-grain"></div>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
