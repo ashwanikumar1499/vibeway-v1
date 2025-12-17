@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>VibeWay - Find Your Travel Soulmate</title>
+    <title>VibeWay - Find Your Travel Twin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,20 +17,19 @@
               display: ['Outfit', 'sans-serif'], 
             },
             colors: {
-              background: '#020617', // Slate 950
-              surface: '#0f172a', // Slate 900
+              background: '#020617',
+              surface: '#0f172a',
               primary: {
-                DEFAULT: '#2dd4bf', // Teal 400
-                glow: '#14b8a6',
+                DEFAULT: '#c0ff00',
+                cyan: '#00f0ff',
+                pink: '#ff0080',
               },
-              secondary: {
-                DEFAULT: '#fb923c', // Orange 400
-              }
             },
             animation: {
               'float': 'float 6s ease-in-out infinite',
               'aurora': 'aurora 10s ease infinite alternate',
               'spin-slow': 'spin 12s linear infinite',
+              'gradient': 'gradient 8s ease infinite',
             },
             keyframes: {
               float: {
@@ -40,6 +39,10 @@
               aurora: {
                 '0%': { transform: 'translate(0, 0) scale(1)' },
                 '100%': { transform: 'translate(-20px, 20px) scale(1.1)' },
+              },
+              gradient: {
+                '0%, 100%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
               }
             }
           },
@@ -73,15 +76,19 @@
         background: #020617;
       }
       ::-webkit-scrollbar-thumb {
-        background: #1e293b;
+        background: linear-gradient(180deg, #c0ff00, #00f0ff);
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #334155;
+        background: linear-gradient(180deg, #d4ff33, #33f4ff);
       }
       
       html {
         scroll-padding-top: 80px;
+      }
+
+      .animate-gradient {
+        background-size: 200% 200%;
       }
     </style>
   </head>

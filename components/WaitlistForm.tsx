@@ -25,12 +25,12 @@ export const WaitlistForm: React.FC = () => {
 
   if (status === SubmissionStatus.SUCCESS) {
     return (
-      <div className="bg-zinc-900/50 border border-zinc-800 backdrop-blur-sm rounded-2xl p-8 md:p-12 text-center max-w-lg mx-auto animate-fade-in shadow-2xl shadow-primary/10">
-        <div className="w-16 h-16 bg-gradient-to-tr from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary/20">
-          <Check className="w-8 h-8 text-white" />
+      <div className="bg-slate-900/50 border border-[#c0ff00]/30 backdrop-blur-sm rounded-2xl p-8 md:p-12 text-center max-w-lg mx-auto animate-fade-in shadow-2xl shadow-[#c0ff00]/20">
+        <div className="w-16 h-16 bg-gradient-to-tr from-[#c0ff00] to-[#00f0ff] rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#c0ff00]/30">
+          <Check className="w-8 h-8 text-black" />
         </div>
-        <h3 className="text-2xl font-display font-bold text-white mb-2">You're on the list.</h3>
-        <p className="text-slate-400">Keep an eye on your inbox. We release new invites every Tuesday.</p>
+        <h3 className="text-2xl font-display font-bold text-white mb-2">You're in.</h3>
+        <p className="text-slate-300 font-medium">Check your inbox. We're rolling out invites weekly. The vibes are about to be immaculate.</p>
       </div>
     );
   }
@@ -39,7 +39,7 @@ export const WaitlistForm: React.FC = () => {
     <div className="max-w-md mx-auto w-full px-4 md:px-0">
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-500"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#c0ff00]/20 via-[#00f0ff]/20 to-[#ff0080]/20 rounded-xl blur opacity-0 group-hover:opacity-75 transition duration-500"></div>
           <div className="relative">
             <label htmlFor="email" className="sr-only">Email Address</label>
             <input
@@ -47,27 +47,27 @@ export const WaitlistForm: React.FC = () => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="your.email@gmail.com"
               required
-              className="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-6 py-4 text-lg text-white placeholder-slate-500 focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-all shadow-xl"
+              className="w-full bg-slate-900/90 border-2 border-slate-700 rounded-xl px-6 py-4 text-lg text-white placeholder-slate-500 focus:border-[#c0ff00] focus:ring-2 focus:ring-[#c0ff00]/30 focus:outline-none transition-all shadow-xl"
             />
           </div>
         </div>
-        
-        <Button 
-            type="submit" 
+
+        <Button
+            type="submit"
             isLoading={status === SubmissionStatus.LOADING}
-            className="w-full text-lg py-4 shadow-lg shadow-white/5"
+            className="w-full text-lg py-4"
         >
-          Join The Club
+          Get Early Access
         </Button>
 
         <p className="text-xs text-center text-slate-500 font-mono">
-          Limited spots for Season 1. <br className="md:hidden" /> No spam, just boarding passes.
+          limited spots. early access only. <br className="md:hidden" /> no spam, just vibes.
         </p>
 
         {status === SubmissionStatus.ERROR && (
-          <p className="text-red-400 text-sm text-center bg-red-900/20 py-2 rounded-lg border border-red-900/50">{errorMessage}</p>
+          <p className="text-[#ff0080] text-sm text-center bg-[#ff0080]/10 py-3 rounded-lg border border-[#ff0080]/30 font-medium">{errorMessage}</p>
         )}
       </form>
     </div>

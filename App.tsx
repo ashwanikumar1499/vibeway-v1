@@ -5,20 +5,26 @@ import { WaitlistForm } from './components/WaitlistForm';
 import { Shield, CheckCircle2, XCircle, Menu, X, Users, MapPin, Sparkles } from 'lucide-react';
 import { motion, useScroll, useTransform, Variants } from 'framer-motion';
 
-// Restored Original Geometric VibeWay Logo
+// Fresh Wavy VibeWay Logo - Gen Z Edition
 const VibeWayLogo = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 8L12 26L16 16" stroke="url(#paint0_linear)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M16 16L20 26L28 8" stroke="url(#paint1_linear)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 18 Q10 10, 14 18 T22 18 Q26 10, 30 18" stroke="url(#paint0_linear)" strokeWidth="4" strokeLinecap="round" fill="none"/>
+    <circle cx="6" cy="18" r="3" fill="url(#paint1_radial)" />
+    <circle cx="30" cy="18" r="3" fill="url(#paint2_radial)" />
     <defs>
-      <linearGradient id="paint0_linear" x1="4" y1="8" x2="12" y2="26" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#2dd4bf"/>
-        <stop offset="1" stopColor="#0f766e"/>
+      <linearGradient id="paint0_linear" x1="6" y1="10" x2="30" y2="18" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#c0ff00"/>
+        <stop offset="0.5" stopColor="#00f0ff"/>
+        <stop offset="1" stopColor="#ff0080"/>
       </linearGradient>
-      <linearGradient id="paint1_linear" x1="16" y1="16" x2="28" y2="8" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#0f766e"/>
-        <stop offset="1" stopColor="#fb923c"/>
-      </linearGradient>
+      <radialGradient id="paint1_radial">
+        <stop stopColor="#c0ff00"/>
+        <stop offset="1" stopColor="#7dd956"/>
+      </radialGradient>
+      <radialGradient id="paint2_radial">
+        <stop stopColor="#ff0080"/>
+        <stop offset="1" stopColor="#ff4f79"/>
+      </radialGradient>
     </defs>
   </svg>
 );
@@ -38,17 +44,17 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
-        <div className="font-display font-bold text-xl md:text-2xl tracking-tight text-white flex items-center gap-3 cursor-pointer group" onClick={() => window.scrollTo(0,0)}>
-          <div className="group-hover:scale-110 transition-transform duration-300 ease-in-out">
+        <div className="font-display font-bold text-xl md:text-2xl tracking-tight text-white flex items-center gap-2 cursor-pointer group" onClick={() => window.scrollTo(0,0)}>
+          <div className="group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ease-in-out">
              <VibeWayLogo />
           </div>
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">VibeWay.</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#c0ff00] via-[#00f0ff] to-[#ff0080]">VibeWay</span>
         </div>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-          <button onClick={() => scrollToSection('problem')} className="hover:text-primary transition-colors">The Problem</button>
-          <button onClick={() => scrollToSection('solution')} className="hover:text-primary transition-colors">The Solution</button>
-          <button onClick={() => scrollToSection('join')} className="text-white bg-white/5 hover:bg-white/10 px-5 py-2.5 rounded-full transition-all hover:scale-105 border border-white/5 font-semibold">Join The Club</button>
+          <button onClick={() => scrollToSection('problem')} className="hover:text-[#c0ff00] transition-colors">The Ick</button>
+          <button onClick={() => scrollToSection('solution')} className="hover:text-[#00f0ff] transition-colors">The Fix</button>
+          <button onClick={() => scrollToSection('join')} className="text-black bg-gradient-to-r from-[#c0ff00] to-[#00f0ff] hover:scale-105 px-5 py-2.5 rounded-full transition-all font-bold shadow-[0_0_20px_rgba(192,255,0,0.3)]">Get Early Access</button>
         </div>
 
         <div className="md:hidden">
@@ -61,9 +67,9 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-[#020617] border-b border-white/10 p-6 flex flex-col gap-4 shadow-2xl absolute w-full z-50">
-           <button onClick={() => scrollToSection('problem')} className="text-slate-400 text-left py-3 text-lg border-b border-white/5">The Problem</button>
-           <button onClick={() => scrollToSection('solution')} className="text-slate-400 text-left py-3 text-lg border-b border-white/5">The Solution</button>
-           <button onClick={() => scrollToSection('join')} className="text-primary font-bold text-left py-3 text-lg">Join Waitlist</button>
+           <button onClick={() => scrollToSection('problem')} className="text-slate-400 text-left py-3 text-lg border-b border-white/5 hover:text-[#ff0080] transition-colors">The Ick</button>
+           <button onClick={() => scrollToSection('solution')} className="text-slate-400 text-left py-3 text-lg border-b border-white/5 hover:text-[#c0ff00] transition-colors">The Fix</button>
+           <button onClick={() => scrollToSection('join')} className="text-[#c0ff00] font-bold text-left py-3 text-lg">Get Early Access</button>
         </div>
       )}
     </nav>
@@ -87,7 +93,7 @@ const TravelCard = () => {
           {/* Header */}
           <div className="flex justify-between items-center mb-4 pb-4 border-b border-white/5">
              <div className="flex items-center gap-3">
-               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-xs shadow-inner">
+               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#c0ff00] to-[#00f0ff] flex items-center justify-center text-black font-bold text-xs shadow-inner">
                  JD
                </div>
                <div>
@@ -95,21 +101,21 @@ const TravelCard = () => {
                  <div className="w-16 h-2 bg-slate-800 rounded-full"></div>
                </div>
              </div>
-             <div className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-bold tracking-wider flex items-center gap-1.5 shadow-[0_0_10px_rgba(45,212,191,0.2)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-[pulse_2s_infinite]"></span>
-                98% MATCH
+             <div className="px-3 py-1 bg-[#c0ff00]/20 text-[#c0ff00] border border-[#c0ff00]/40 rounded-full text-[10px] font-bold tracking-wider flex items-center gap-1.5 shadow-[0_0_15px_rgba(192,255,0,0.3)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#c0ff00] animate-[pulse_2s_infinite]"></span>
+                98% VIBE
              </div>
           </div>
 
           {/* Image Area */}
           <div className="relative w-full h-40 bg-slate-800 rounded-2xl mb-4 overflow-hidden group">
              {/* Gradient Overlay representing image */}
-             <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 group-hover:scale-105 transition-transform duration-700"></div>
+             <div className="absolute inset-0 bg-gradient-to-br from-cyan-600 via-blue-700 to-pink-700 group-hover:scale-105 transition-transform duration-700"></div>
              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-             
+
              {/* Location Tag */}
-             <div className="absolute bottom-3 left-3 flex items-center gap-1 text-white text-xs font-bold backdrop-blur-sm bg-black/20 px-2 py-1 rounded-lg border border-white/10">
-               <MapPin size={12} className="text-secondary" />
+             <div className="absolute bottom-3 left-3 flex items-center gap-1 text-white text-xs font-bold backdrop-blur-sm bg-black/30 px-2.5 py-1.5 rounded-xl border border-[#c0ff00]/30 shadow-[0_0_10px_rgba(192,255,0,0.3)]">
+               <MapPin size={12} className="text-[#c0ff00]" />
                Kyoto, Japan
              </div>
           </div>
@@ -124,9 +130,9 @@ const TravelCard = () => {
           </div>
 
           {/* Button */}
-          <button className="w-full py-3 bg-white text-black font-bold text-sm rounded-xl hover:bg-slate-200 transition-colors shadow-lg flex items-center justify-center gap-2 group">
-             <Sparkles size={14} className="text-secondary group-hover:rotate-12 transition-transform" />
-             Send Invite
+          <button className="w-full py-3 bg-gradient-to-r from-[#c0ff00] to-[#00f0ff] text-black font-bold text-sm rounded-xl hover:scale-[1.02] transition-all shadow-[0_0_20px_rgba(192,255,0,0.3)] flex items-center justify-center gap-2 group">
+             <Sparkles size={14} className="text-black group-hover:rotate-12 transition-transform" />
+             Send Vibe Check
           </button>
        </motion.div>
 
@@ -152,7 +158,7 @@ const StoryPoint: React.FC<{ title: string; desc: string; type: 'pain' | 'gain';
     transition={{ duration: 0.6, delay: delay }}
     className="flex gap-4 items-start mb-8 group"
   >
-    <div className={`mt-1 min-w-[24px] h-6 rounded-full flex items-center justify-center transition-transform group-hover:scale-110 duration-300 ${type === 'pain' ? 'bg-red-500/10 text-red-400' : 'bg-primary/10 text-primary'}`}>
+    <div className={`mt-1 min-w-[24px] h-6 rounded-full flex items-center justify-center transition-transform group-hover:scale-110 duration-300 ${type === 'pain' ? 'bg-[#ff0080]/20 text-[#ff0080] border border-[#ff0080]/30' : 'bg-[#c0ff00]/20 text-[#c0ff00] border border-[#c0ff00]/30'}`}>
        {type === 'pain' ? <XCircle size={16} /> : <CheckCircle2 size={16} />}
     </div>
     <div>
@@ -186,9 +192,9 @@ function App() {
             style={{ y: bgY }}
             className="absolute inset-0 opacity-40"
           >
-            <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-indigo-900/30 rounded-full blur-[100px] animate-aurora"></div>
-            <div className="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] bg-primary/10 rounded-full blur-[120px] animate-aurora" style={{ animationDelay: '-5s' }}></div>
-            <div className="absolute bottom-[-20%] left-[20%] w-[70vw] h-[70vw] bg-secondary/10 rounded-full blur-[100px] animate-aurora" style={{ animationDelay: '-2s' }}></div>
+            <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] bg-[#c0ff00]/15 rounded-full blur-[120px] animate-aurora"></div>
+            <div className="absolute top-[20%] right-[-10%] w-[60vw] h-[60vw] bg-[#00f0ff]/15 rounded-full blur-[140px] animate-aurora" style={{ animationDelay: '-5s' }}></div>
+            <div className="absolute bottom-[-20%] left-[20%] w-[70vw] h-[70vw] bg-[#ff0080]/15 rounded-full blur-[120px] animate-aurora" style={{ animationDelay: '-2s' }}></div>
           </motion.div>
       </div>
 
@@ -203,28 +209,29 @@ function App() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] md:text-xs font-medium text-slate-300 mb-6 md:mb-8 backdrop-blur-md hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#c0ff00]/10 to-[#00f0ff]/10 border border-[#c0ff00]/30 text-[10px] md:text-xs font-bold text-white mb-6 md:mb-8 backdrop-blur-md hover:scale-105 transition-all shadow-[0_0_20px_rgba(192,255,0,0.2)]"
             >
-              <Sparkles className="w-3 h-3 text-secondary" />
-              <span className="tracking-wide uppercase">Community-First Travel</span>
+              <Sparkles className="w-3 h-3 text-[#c0ff00]" />
+              <span className="tracking-wide uppercase">Find Your Travel Twin</span>
             </motion.div>
-            
+
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6 md:mb-8 leading-[1.05] font-display max-w-5xl mx-auto drop-shadow-2xl">
-              Don't let your <br className="hidden md:block" />
-              dream trip <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">stay a dream.</span>
+              Stop planning trips that <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c0ff00] via-[#00f0ff] to-[#ff0080] animate-gradient">never happen.</span>
             </h1>
-            
-            <p className="text-base md:text-xl text-slate-400 max-w-xl md:max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-light px-2">
-              The group chat is dead. Your friends are "busy." <br className="hidden md:block"/> VibeWay matches you with a verified crew that actually books the ticket.
+
+            <p className="text-base md:text-xl text-slate-300 max-w-xl md:max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium px-2">
+              Your group chat is a ghost town. Your friends flake. <br className="hidden md:block"/>
+              <span className="text-[#c0ff00]">VibeWay</span> finds you a crew that <span className="text-[#ff0080]">actually shows up</span> at the airport.
             </p>
             
             <div className="w-full md:w-auto px-4">
-              <Button onClick={scrollToJoin} className="w-full md:w-auto text-base py-4 font-display font-bold shadow-[0_0_30px_-5px_rgba(45,212,191,0.2)] hover:shadow-[0_0_40px_-5px_rgba(45,212,191,0.4)]">
-                Find Your Crew
+              <Button onClick={scrollToJoin} className="w-full md:w-auto text-base py-4 font-display font-bold shadow-[0_0_40px_rgba(192,255,0,0.3)] hover:shadow-[0_0_50px_rgba(192,255,0,0.5)] bg-gradient-to-r from-[#c0ff00] to-[#00f0ff] text-black hover:scale-105">
+                Get Early Access
               </Button>
             </div>
-             <p className="text-[10px] md:text-xs text-slate-600 font-mono mt-6">
-                // No subscription. No ads. Just boarding passes.
+             <p className="text-[10px] md:text-xs text-slate-500 font-mono mt-6">
+                no cap, just boarding passes fr fr
               </p>
           </motion.div>
         </Section>
@@ -235,26 +242,26 @@ function App() {
         <Section>
             <div className="flex flex-col md:grid md:grid-cols-2 gap-12 md:gap-24 items-center">
                 <div className="order-2 md:order-1">
-                     <h2 className="text-sm font-mono text-red-400 mb-4 uppercase tracking-widest">The Problem</h2>
-                     <h3 className="text-3xl md:text-5xl font-bold font-display mb-8">Why travel sucks right now.</h3>
-                     
+                     <h2 className="text-sm font-mono text-[#ff0080] mb-4 uppercase tracking-widest font-bold">The Ick</h2>
+                     <h3 className="text-3xl md:text-5xl font-bold font-display mb-8">Why nobody's traveling rn.</h3>
+
                      <div className="space-y-2">
-                        <StoryPoint 
+                        <StoryPoint
                             type="pain"
-                            title="The 'Group Chat Limbo'"
-                            desc="You start a chat. Everyone sends fire emojis. Then you pick a date, and suddenly everyone is 'swamped at work'. The trip dies in the chat."
+                            title="Group Chat Graveyard"
+                            desc="You drop a 'Bali in March?' Everyone reacts with plane emojis. Then crickets. Three months later someone replies 'sorry just saw this lol' and the trip is DOA."
                             delay={0}
                         />
-                        <StoryPoint 
+                        <StoryPoint
                             type="pain"
-                            title="The Vibe Clash"
-                            desc="You end up traveling with a friend of a friend. You want street food and hostels; they want resorts and room service. The trip becomes a compromise."
+                            title="Vibe Mismatch Energy"
+                            desc="You're trying to backpack through Southeast Asia on $30/day. Your travel buddy wants luxury resorts and bottles at beach clubs. The vibes are OFF."
                             delay={0.1}
                         />
-                        <StoryPoint 
+                        <StoryPoint
                             type="pain"
-                            title="The Solo Tax"
-                            desc="Going alone means paying double for accommodation, having no one to watch your bag at the airport, and dining alone when you don't want to."
+                            title="Solo Traveler Tax"
+                            desc="Going alone hits different. Double the hotel costs, nobody to watch your stuff, eating dinner for one while couples everywhere. The loneliness is real."
                             delay={0.2}
                         />
                      </div>
@@ -266,23 +273,23 @@ function App() {
                         <motion.div 
                           animate={{ y: [-10, 10, -10] }}
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-2 bg-[#0f172a] border border-red-500/30 rounded-xl flex items-center justify-center text-xs text-red-400 shadow-xl whitespace-nowrap"
+                          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-2 bg-[#0f172a] border border-[#ff0080]/50 rounded-xl flex items-center justify-center text-xs text-[#ff0080] shadow-xl whitespace-nowrap rotate-3"
                         >
-                            "Maybe next year?"
+                            "maybe next szn?"
                         </motion.div>
-                        <motion.div 
+                        <motion.div
                            animate={{ x: [10, -10, 10] }}
                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                           className="absolute bottom-10 right-0 px-4 py-2 bg-[#0f172a] border border-red-500/30 rounded-xl flex items-center justify-center text-xs text-red-400 shadow-xl whitespace-nowrap"
+                           className="absolute bottom-10 right-0 px-4 py-2 bg-[#0f172a] border border-[#ff0080]/50 rounded-xl flex items-center justify-center text-xs text-[#ff0080] shadow-xl whitespace-nowrap -rotate-6"
                         >
-                            "Too expensive"
+                            "lowkey broke rn"
                         </motion.div>
-                        <motion.div 
+                        <motion.div
                            animate={{ scale: [1, 1.1, 1] }}
                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                           className="absolute top-1/2 left-0 -translate-x-1/2 px-4 py-2 bg-[#0f172a] border border-red-500/30 rounded-xl flex items-center justify-center text-xs text-red-400 shadow-xl whitespace-nowrap"
+                           className="absolute top-1/2 left-0 -translate-x-1/2 px-4 py-2 bg-[#0f172a] border border-[#ff0080]/50 rounded-xl flex items-center justify-center text-xs text-[#ff0080] shadow-xl whitespace-nowrap rotate-6"
                         >
-                            "I'm broke lol"
+                            "just saw this lol"
                         </motion.div>
                         <XCircle className="w-16 h-16 text-red-500/20" />
                     </div>
@@ -301,26 +308,26 @@ function App() {
                 </div>
 
                 <div className="order-2 md:order-2">
-                     <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">The Solution</h2>
-                     <h3 className="text-3xl md:text-5xl font-bold font-display mb-8">The VibeWay Protocol.</h3>
-                     
+                     <h2 className="text-sm font-mono text-[#c0ff00] mb-4 uppercase tracking-widest font-bold">The Fix</h2>
+                     <h3 className="text-3xl md:text-5xl font-bold font-display mb-8">How we actually solved this.</h3>
+
                      <div className="space-y-2">
-                        <StoryPoint 
+                        <StoryPoint
                             type="gain"
-                            title="Algorithmic Vibe Matching"
-                            desc="We don't just match destinations. We match budgets, energy levels (chill vs. chaotic), and interests. You get a crew that travels like you do."
+                            title="AI Vibe Matching (Actually Good)"
+                            desc="We match you based on travel style, budget, and energy. Want street food tours at 6am? We'll find your people. Prefer sleeping till noon and beach clubs? We got you too."
                             delay={0}
                         />
-                        <StoryPoint 
+                        <StoryPoint
                             type="gain"
-                            title="Verified Humans Only"
-                            desc="Every member passes a Stripe Identity check and a video intro. We filter out weirdos so you can travel with peace of mind."
+                            title="No Weirdos Allowed"
+                            desc="Everyone gets verified through Stripe Identity plus a quick video vibe check. We're building a community of real travelers, not bots or creeps."
                             delay={0.1}
                         />
-                        <StoryPoint 
+                        <StoryPoint
                             type="gain"
-                            title="Escrow Accountability"
-                            desc="The flake-killer. Everyone puts a deposit down. If someone bails last minute without cause, their deposit goes to the group's bar tab."
+                            title="Anti-Flake Protection"
+                            desc="Everyone puts down a deposit. If someone ghosts last minute without a real reason, their deposit funds the group's first dinner. Accountability hits different."
                             delay={0.2}
                         />
                      </div>
@@ -332,15 +339,16 @@ function App() {
       {/* CTA / JOIN WAITLIST */}
       <div id="join" className="relative overflow-hidden bg-slate-950">
         {/* Ambient Glow */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-t from-primary/10 to-transparent blur-[120px] rounded-full pointer-events-none"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[800px] h-[600px] bg-gradient-to-t from-[#c0ff00]/15 via-[#00f0ff]/10 to-transparent blur-[140px] rounded-full pointer-events-none"></div>
         
         <Section className="py-24 md:py-40 relative z-10">
             <div className="text-center mb-12 md:mb-16">
                 <h2 className="text-4xl md:text-7xl font-bold tracking-tight mb-6 font-display">
-                    Your crew is <br /> waiting <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">offline.</span>
+                    Your travel twin is <br /> out there <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c0ff00] via-[#00f0ff] to-[#ff0080]">rn.</span>
                 </h2>
-                <p className="text-slate-400 text-lg max-w-xl mx-auto px-4">
-                    Stop waiting for your friends to be free. <br/> Join the club of travelers who are ready to go now.
+                <p className="text-slate-300 text-lg max-w-xl mx-auto px-4 font-medium">
+                    Quit waiting on your flaky friends. <br/>
+                    Join travelers who are <span className="text-[#c0ff00]">actually ready</span> to book flights.
                 </p>
             </div>
             
